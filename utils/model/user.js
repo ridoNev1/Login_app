@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
       type: Number,
       maxlength: 1,
     },
-    // 1 admin
+    // 2 admin, 1 user
     level: {
       type: Number,
       maxlength: 1,

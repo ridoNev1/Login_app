@@ -28,12 +28,7 @@ const Login = () => {
           logInData
         );
 
-        Swal.fire({
-          title: "Berhasil masuk!",
-          icon: "success",
-          confirmButtonColor: "skyblue",
-          confirmButtonText: "ok",
-        });
+        Router.push("/profile_page");
       } catch (error) {
         Swal.fire({
           title: "Gagal masuk!",

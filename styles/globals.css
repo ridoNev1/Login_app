@@ -3,6 +3,8 @@
 @import url("../components/navbar/navbar.module.css");
 @import url("../pages/user/login/login.css");
 @import url("../pages/user/register/index.css");
+@import url("../components/ProfileUpload/index.css");
+@import url("../pages/profile_page/index.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 a {

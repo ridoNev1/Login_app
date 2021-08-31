@@ -66,7 +66,7 @@ const user = async (req, res) => {
                         margin-bottom: 10;
                         outline: none;
                         border: none;
-                        background-color: #f72585;
+                        background-color: #2d5d83;
                         color: white;
                         border-radius: 5;
                       "

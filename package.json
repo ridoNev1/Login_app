@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.4",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
@@ -19,6 +20,7 @@
     "nodemailer": "^6.6.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-easy-crop": "^3.5.2",
     "sweetalert2": "^11.1.4",
     "sweetalert2-react-content": "^4.1.1"
   }
