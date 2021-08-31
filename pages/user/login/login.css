@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+.__login-page {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.__login-container {
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.22);
+  width: 27%;
+  height: 80vh;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.__login-inner-container {
+  width: 100%;
+}
+
+.__login-highlight {
+  font-size: 25px;
+  font-weight: bold;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.__login-highlight-desc {
+  opacity: 0.5;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.__login-form {
+  margin-top: 35px;
+}
+
+.__login-form input {
+  padding: 12px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: rgb(235, 235, 235);
+}
+
+.__login-form-username {
+  width: 100%;
+}
+
+.__login-form-password {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.__login-form button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 9px 0;
+  font-size: 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in;
+  outline: none;
+  background-color: #2d5d83;
+  color: white;
+  border: 2px solid #2d5d83;
+}
+
+.__login-form button:hover {
+  background-color: white;
+  color: #2d5d83;
+  border: 2px solid #2d5d83;
+}
+
+.__login-page-register-link {
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.8;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+.__login-page-register-link span {
+  color: #2d5d83;
+  cursor: pointer;
+}
