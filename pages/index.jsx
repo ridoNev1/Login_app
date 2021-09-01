@@ -16,10 +16,12 @@ export const getServerSideProps = async (ctx) => {
   const cookieData = cookie.parse(ctx?.req?.headers?.cookie || "").token ?? "";
   const jwtKey = process.env.JWT_KEY;
   let decoded = null;
-  jwt.verify(cookieData, jwtKey, (err) => {
-    if (err) decoded = null;
-    decoded = jwt_decode(cookieData);
-  });
+  if (cookieData) {
+    jwt.verify(cookieData, jwtKey, (err) => {
+      if (err) decoded = null;
+      decoded = jwt_decode(cookieData);
+    });
+  }
 
   return {
     props: { user: decoded },

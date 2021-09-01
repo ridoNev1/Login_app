@@ -6,17 +6,22 @@ import cookie from "cookie";
 import jwt_decode from "jwt-decode";
 import { CameraIcon } from "@heroicons/react/outline";
 import ImageUploader from "../../components/ProfileUpload";
+import { User } from "../../utils/model/user";
+import db from "../../utils/dbConnect";
 
-const User = ({ user }) => {
+const UserComp = ({ user }) => {
   const [showCropper, setShowCropper] = useState(false);
 
   return (
     <Layout title="Profile Data">
       {showCropper ? (
-        <ImageUploader onClose={() => setShowCropper(false)} />
+        <ImageUploader
+          onClose={() => setShowCropper(false)}
+          user={JSON.parse(user)}
+        />
       ) : null}
       <div style={{ backgroundColor: "whitesmoke" }}>
-        <Navbar user={user} />
+        <Navbar user={JSON.parse(user)} />
         <div className="__profile-page">
           <div className="__profile-user-card">
             <img
@@ -26,7 +31,10 @@ const User = ({ user }) => {
             />
             <div className="__profile-user-card-pp">
               <img
-                src="/blank-profile-picture-973460_1280.png"
+                src={
+                  JSON.parse(user)?.profile_url ||
+                  "/blank-profile-picture-973460_1280.png"
+                }
                 alt="nopictfound"
                 style={{
                   width: 150,
@@ -57,19 +65,19 @@ const User = ({ user }) => {
               </div>
             </div>
             <div className="__profile-user-card-description">
-              <p>{user.name}</p>
-              <p>@{user.username}</p>
+              <p>{JSON.parse(user).name}</p>
+              <p>@{JSON.parse(user).username}</p>
               <p>Email :</p>
-              <p>{user.email}</p>
+              <p>{JSON.parse(user).email}</p>
               <p>Status : </p>
               <span
                 className={
-                  user.level === 2
+                  JSON.parse(user).level === 2
                     ? "__label-coloring-red"
                     : "__label-coloring-blue"
                 }
               >
-                {user.level === 2 ? "admin" : "pengguna"}
+                {JSON.parse(user).level === 2 ? "admin" : "pengguna"}
               </span>
             </div>
           </div>
@@ -107,10 +115,15 @@ export const getServerSideProps = async (ctx) => {
       },
     };
   }
-
-  return {
-    props: { user: decoded },
-  };
+  db();
+  try {
+    const getUserLogin = await User.findOne({ _id: decoded._id });
+    return {
+      props: { user: JSON.stringify(getUserLogin) },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export default User;
+export default UserComp;

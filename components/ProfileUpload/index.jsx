@@ -4,6 +4,8 @@ import CropedImage from "../../lib/cropedImage";
 import { dataURLtoFile } from "../../lib/base64tofile";
 import axios from "axios";
 import { ArrowSmLeftIcon } from "@heroicons/react/outline";
+import Swal from "sweetalert2";
+import Router from "next/router";
 
 const ProfileUpload = ({ onClose, user, refetchData }) => {
   const inputRef = React.useRef();
@@ -34,11 +36,46 @@ const ProfileUpload = ({ onClose, user, refetchData }) => {
   };
 
   const handleSaveImage = async () => {
-    // setLoading(true);
+    setLoading(true);
     const images = await CropedImage(image, croppedArea);
     const resultImage = await dataURLtoFile(images, imageName);
+    const generateNameImage =
+      new Date()
+        .toString()
+        .slice(0, 24)
+        .split(" ")
+        .join("")
+        .split(":")
+        .join("") + resultImage.name;
 
-    console.log(resultImage);
+    try {
+      const fd = new FormData();
+      fd.append("image", resultImage);
+      const uploadImage = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/upload_image?name=${generateNameImage}`,
+        fd,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      if (uploadImage.status === 200) {
+        await axios.patch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user?id=${user._id}`,
+          {
+            profile_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/post_images/${generateNameImage}`,
+          }
+        );
+
+        onClose();
+        Router.replace(Router.asPath);
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Terjadi Kesalahan!",
+        icon: "error",
+        confirmButtonColor: "skyblue",
+        confirmButtonText: "ok",
+      });
+    }
   };
 
   return (
@@ -48,11 +85,11 @@ const ProfileUpload = ({ onClose, user, refetchData }) => {
           style={{
             height: 40,
             width: 40,
-            color: "maroon",
+            color: "white",
             marginTop: 20,
             marginLeft: 20,
             cursor: "pointer",
-            backgroundColor: "white",
+            backgroundColor: "#ff595f",
             borderRadius: "50%",
           }}
           onClick={onClose}
@@ -88,14 +125,15 @@ const ProfileUpload = ({ onClose, user, refetchData }) => {
         >
           Choose Image
         </button>
-        <button
-          style={{ marginRight: "10px" }}
-          type="primary"
-          onClick={handleSaveImage}
-          loading={loading}
-        >
-          Save
-        </button>
+        {image ? (
+          <button
+            style={{ marginRight: "10px" }}
+            type="primary"
+            onClick={handleSaveImage}
+          >
+            {loading ? <div className="lds-dual-ring"></div> : "Save"}
+          </button>
+        ) : null}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { regSchema } from "../../../lib/validator/user";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import cookie from "cookie";
 
 db();
 

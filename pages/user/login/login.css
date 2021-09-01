@@ -79,9 +79,9 @@
 }
 
 .__login-form button:hover {
-  background-color: white;
-  color: #2d5d83;
-  border: 2px solid #2d5d83;
+  background-color: #4984b3;
+  color: white;
+  border: 2px solid #4984b3;
 }
 
 .__login-page-register-link {
