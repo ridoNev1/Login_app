@@ -14,7 +14,7 @@
   background-color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.22);
   border-radius: 15px;
-  height: 490px;
+  height: 500px;
 }
 
 .__profile-user-card .__profile-user-card-banner {
@@ -85,12 +85,14 @@
 .__profile-page-logout-btn {
   outline: none;
   border: none;
-  background-color: red;
+  background-color: #fc355a;
   color: white;
-  padding: 4px 10px;
-  border-radius: 2px;
+  padding: 8px 0;
+  border-radius: 20px;
   font-weight: 500;
   cursor: pointer;
+  font-size: 18;
+  width: 100%;
 }
 
 .__profile-page-logout-btn:hover {

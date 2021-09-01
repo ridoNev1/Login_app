@@ -125,9 +125,9 @@ const UserComp = ({ user, allUser }) => {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                padding: "3px 15px",
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: 15,
               }}
             >
               <button
