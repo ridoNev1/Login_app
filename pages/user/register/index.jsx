@@ -109,7 +109,7 @@ const index = () => {
                   onChange={handleChage}
                 />
                 <button>
-                  {loading ? <div class="lds-dual-ring"></div> : "Daftar"}
+                  {loading ? <div className="lds-dual-ring"></div> : "Daftar"}
                 </button>
               </form>
               <p className="__login-page-register-link">

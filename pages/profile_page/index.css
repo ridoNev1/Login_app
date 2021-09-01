@@ -14,7 +14,7 @@
   background-color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.22);
   border-radius: 15px;
-  height: 450px;
+  height: 490px;
 }
 
 .__profile-user-card .__profile-user-card-banner {
@@ -82,6 +82,87 @@
   border-radius: 2px;
 }
 
+.__profile-page-logout-btn {
+  outline: none;
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.__profile-page-logout-btn:hover {
+  opacity: 0.8;
+}
+
 .__profile-all-user-list {
-  background-color: skyblue;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 15px;
+  height: 490px;
+}
+
+.__profile-all-user-list-navbar {
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 15px 15px 0 0;
+  padding: 13px 25px;
+}
+
+.__profile-all-user-list-container {
+  margin-top: 10px;
+  height: 85%;
+  overflow: scroll;
+}
+
+.__profile-all-user-list-container::-webkit-scrollbar {
+  width: 8px; /* width of the entire scrollbar */
+  height: 0;
+}
+
+.__profile-all-user-list-container::-webkit-scrollbar-track {
+  background: whitesmoke; /* color of the tracking area */
+}
+
+.__profile-all-user-list-container::-webkit-scrollbar-thumb {
+  background-color: #2d5d83; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+.__profile-all-user-list-item {
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.062);
+}
+
+.__profile-all-user-list-item p:nth-child(1) {
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.__profile-all-user-list-item p:nth-child(2) {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.__profile-all-user-list-item button {
+  outline: none;
+  border: none;
+  padding: 7px 0;
+  background-color: #2d5d83;
+  font-weight: 500;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+.__profile-all-user-list-item button:hover {
+  opacity: 0.85;
 }

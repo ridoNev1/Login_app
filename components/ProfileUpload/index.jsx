@@ -3,7 +3,7 @@ import Cropper from "react-easy-crop";
 import CropedImage from "../../lib/cropedImage";
 import { dataURLtoFile } from "../../lib/base64tofile";
 import axios from "axios";
-import { ArrowSmLeftIcon } from "@heroicons/react/outline";
+import { BackspaceIcon } from "@heroicons/react/outline";
 import Swal from "sweetalert2";
 import Router from "next/router";
 
@@ -81,7 +81,7 @@ const ProfileUpload = ({ onClose, user, refetchData }) => {
   return (
     <div className="container-upload-image">
       <div className="container-cropper-upload-image">
-        <ArrowSmLeftIcon
+        <BackspaceIcon
           style={{
             height: 40,
             width: 40,
@@ -89,8 +89,6 @@ const ProfileUpload = ({ onClose, user, refetchData }) => {
             marginTop: 20,
             marginLeft: 20,
             cursor: "pointer",
-            backgroundColor: "#ff595f",
-            borderRadius: "50%",
           }}
           onClick={onClose}
         />

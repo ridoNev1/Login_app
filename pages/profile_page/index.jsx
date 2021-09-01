@@ -8,9 +8,51 @@ import { CameraIcon } from "@heroicons/react/outline";
 import ImageUploader from "../../components/ProfileUpload";
 import { User } from "../../utils/model/user";
 import db from "../../utils/dbConnect";
+import axios from "axios";
+import Router from "next/router";
+import Swal from "sweetalert2";
 
-const UserComp = ({ user }) => {
+const UserComp = ({ user, allUser }) => {
   const [showCropper, setShowCropper] = useState(false);
+
+  const openModal = (el) => {
+    Swal.fire({
+      html: `
+        <div className="__profile-user-card-pp">
+          <img
+            src="${el?.profile_url || "/blank-profile-picture-973460_1280.png"}"
+            alt="nopictfound"
+            style="
+              width: 150;
+              height: 150;
+              border-radius: 50%;
+              border: 4px solid white;
+              object-fit: contain;
+              background-color: #d1d1d1;
+            "
+          />
+        </div>
+        <div class="__profile-user-card-description">
+          <p style="margin-left: 0;">${el.name}</p>
+          <p style="margin-left: 0;">@${el.username}</p>
+          <p style="text-align: left;">Email :</p>
+          <p style="text-align: left;">${el.email}</p>
+          <p style="text-align: left;">Status : <span
+            class="${
+              el.level === 2 ? "__label-coloring-red" : "__label-coloring-blue"
+            }"
+            style="margin-left: 5px"
+          >
+            ${el.level === 2 ? "admin" : "pengguna"}
+          </span>
+          </p>
+          
+        </div>
+      `,
+      confirmButtonColor: "skyblue",
+      confirmButtonText: "ok",
+    });
+  };
 
   return (
     <Layout title="Profile Data">
@@ -80,9 +122,72 @@ const UserComp = ({ user }) => {
                 {JSON.parse(user).level === 2 ? "admin" : "pengguna"}
               </span>
             </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <button
+                className="__profile-page-logout-btn"
+                onClick={async () => {
+                  try {
+                    await axios.post(
+                      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/logout`
+                    );
+                    Router.push("/user/login");
+                  } catch (error) {
+                    console.log(error.message);
+                  }
+                }}
+              >
+                Logout
+              </button>
+            </div>
           </div>
           <div className="__profile-all-user-list">
-            <p>list user</p>
+            <div className="__profile-all-user-list-navbar">
+              <p>Daftar User</p>
+            </div>
+            <div className="__profile-all-user-list-container">
+              {JSON.parse(allUser) ? (
+                JSON.parse(allUser).map((el, index) => (
+                  <div className="__profile-all-user-list-item" key={index}>
+                    <p>{el.name}</p>
+                    <p>{el.email}</p>
+                    <button
+                      onClick={() => {
+                        openModal(el);
+                      }}
+                    >
+                      Lihat detail
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <img
+                    src="/3293465.jpg"
+                    alt="no access"
+                    style={{ width: 300 }}
+                  />
+                  <p style={{ opacity: 0.8 }}>
+                    Fitur ini hanya tersedia pada admin
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -118,8 +223,15 @@ export const getServerSideProps = async (ctx) => {
   db();
   try {
     const getUserLogin = await User.findOne({ _id: decoded._id });
+    let getAllUser = null;
+    if (decoded.level === 2) {
+      getAllUser = await User.find();
+    }
     return {
-      props: { user: JSON.stringify(getUserLogin) },
+      props: {
+        user: JSON.stringify(getUserLogin),
+        allUser: JSON.stringify(getAllUser),
+      },
     };
   } catch (error) {
     console.log(error);

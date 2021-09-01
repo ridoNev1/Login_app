@@ -84,7 +84,7 @@ const Login = () => {
                 onChange={handleChage}
               />
               <button>
-                {loading ? <div class="lds-dual-ring"></div> : "Masuk"}
+                {loading ? <div className="lds-dual-ring"></div> : "Masuk"}
               </button>
             </form>
             <p className="__login-page-register-link">
