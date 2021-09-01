@@ -1,4 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Simpe Login app, with authentication, authorization, verif email, upload image, admin login system
+## Includes
+1. next JS
+2. Mongoose
+3. express
+
+## Screenshot
+![Screenshot (67)](https://user-images.githubusercontent.com/64463093/131612388-9da0ac40-da3b-4d9e-8a9b-929f92bc8faf.png)
+![Screenshot (68)](https://user-images.githubusercontent.com/64463093/131612391-5e5591fa-582b-41bf-ab9f-3ee2a5c9aaf8.png)
+![Screenshot (71)](https://user-images.githubusercontent.com/64463093/131612393-e71c000c-dae7-454f-8e28-e8f04b35e2b2.png)
+![Screenshot (72)](https://user-images.githubusercontent.com/64463093/131612396-34b13663-7ace-49b8-9cdf-6694e122e8b0.png)
+
 
 ## Getting Started
 
