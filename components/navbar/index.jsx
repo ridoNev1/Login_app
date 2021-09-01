@@ -9,7 +9,9 @@ const Navbar = ({ user }) => {
         {user ? (
           <div style={{ display: "flex", alignItems: "center" }}>
             <img
-              src="/blank-profile-picture-973460_1280.png"
+              src={
+                user?.profile_url || "/blank-profile-picture-973460_1280.png"
+              }
               alt="profile_pict"
               style={{
                 width: 35,

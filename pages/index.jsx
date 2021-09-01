@@ -3,11 +3,13 @@ import Navbar from "../components/navbar";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
 import jwt_decode from "jwt-decode";
+import Hero from "../components/hero";
 
 export default function Home({ user }) {
   return (
     <Layout title="Landing Page">
       <Navbar user={user} />
+      <Hero />
     </Layout>
   );
 }
